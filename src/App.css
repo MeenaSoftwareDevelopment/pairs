@@ -1,0 +1,21 @@
+/* this code was already included when I created the react app using vite 
+it is currently ensuring that the game board is centralized in the page. -  Dom */
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+
+ /*This was added to display the game board in a grid format 
+ it divides teh width of the container into 4 equal columns. 
+ then give a gap of 16 pixels between each card in both rows and columns.
+ This was done to give a more organized look to the board - Dom */
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* assuming 4x5 grid -  Dom */ 
+  gap: 16px;
+}
+
