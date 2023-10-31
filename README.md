@@ -6,6 +6,8 @@ For project details, see [the project's README](https://github.com/MeenaSoftware
 
 This README is unfinished, but so is the game. We're working on it.
 
+We utilized Vite as a tool to set up and facilitate the development of our React-based Pairs game. The game logic, interface designs, and styles were created by us.
+
 ## Original README
 
 ```md
