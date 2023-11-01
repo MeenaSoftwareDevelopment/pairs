@@ -1,7 +1,8 @@
 // utility.js
 
-// This function implements the Fisher-Yates shuffle algorithm to randomly shuffle an array
-// in this case, this will be used to shuffle the cards and no marks are expected as this code has been 
+// This function implements the Fisher-Yates shuffle algorithm to randomly
+// shuffle an array in this case, this will be used to shuffle the cards and no
+// marks are expected as this code has been copied.
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {

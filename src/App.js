@@ -1,3 +1,7 @@
+/*
+ * Generate the App component and run the game.
+ */
+
 import React from "react";
 import { TimerBanner } from "./containers";
 import { GameBoard } from "./containers";

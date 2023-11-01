@@ -1,25 +1,50 @@
+/*
+ * TimerBanner.js - Display the timer, number of moves and number of points.
+ * 
+ * Pairs is free software; you can redistribute it and/or modify it under the
+ * terms of the MIT license, but with ABSOLUTELY NO WARRANTY.
+ */
+
 import React, { useState } from "react";
 import Card from "./Card";
 import { useGameLogic } from "./useGameLogic";
 import "./TimerBanner.css";
 
 export const TimerBanner = () => {
+
+  // Set the `seconds`, `isActive` and `userClicked` states.
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [userClicked, setUserClicked] = useState(false);
 
+  /**
+   * Toggles the timer based on the current state of isActive and userClicked.
+   *
+   * @return {void} 
+   */
   const toggleTimer = () => {
     if (!isActive && userClicked) {
       setIsActive(true);
     }
   };
 
+  /**
+   * Resets the timer by setting the seconds to 0, isActive to false, and userClicked to false.
+   *
+   * @param {none} none - This function does not take any parameters.
+   * @return {none} This function does not return anything.
+   */
   const resetTimer = () => {
     setSeconds(0);
     setIsActive(false);
     setUserClicked(false);
   };
 
+  /**
+   * Handles the right click event.
+   *
+   * @return {undefined} No return value.
+   */
   const handleRightClick = () => {
     if (!isActive) {
       setIsActive(true);
@@ -28,8 +53,8 @@ export const TimerBanner = () => {
   };
 
   const initialCards = [
-    // set of cards in an array with 2 of each colour but with unique ID.
-    // isMatched is also set up to keep track of points
+    // The set of cards in an array with 2 of each colour but with a unique ID.
+    // The `isMatched` variable is also set up to keep track of points.
     { id: 2, color: "#ff0000", isFlipped: false, isMatched: false },
     { id: 1, color: "#ff0000", isFlipped: false, isMatched: false },
 
@@ -61,10 +86,11 @@ export const TimerBanner = () => {
     { id: 20, color: "#007f7f", isFlipped: false, isMatched: false },
   ];
 
-  // uses the useGameLogic that was set up to keep track of the points and check if cards are matching/
+  // Uses `useGameLogic`, defined in `useGameLogic.jsx`, to keep track of the
+  // player's points and to check if the cards match.
   const { cards, points, moves, handleCardClick } = useGameLogic(initialCards);
-  // Shows the game board and current points and the cards in a grid as mentioned previousliy
 
+  // This bit handles the timer.
   React.useEffect(() => {
     let interval;
 
@@ -79,6 +105,7 @@ export const TimerBanner = () => {
     return () => clearInterval(interval);
   }, [isActive]);
 
+  // This handles the "Start Game" button's styling.
   const buttonStyle = {
     backgroundColor: "blue",
     padding: "10px",
@@ -87,6 +114,10 @@ export const TimerBanner = () => {
     cursor: "pointer",
   };
 
+  // This defines a win condition.
+  // If the player has achieved 10 points (yes I know using magic numbers is
+  // not great, but it works) then it sets the contents of the page to the
+  // win screen.
   if (points == 10) {
     return (
       <div className="win-screen">
@@ -101,6 +132,7 @@ export const TimerBanner = () => {
     );
   }
 
+  // This sets up the start button and the timer, moves and points banner.
   return (
     <div className="start-button">
       <div onContextMenu={(e) => e.preventDefault()} onClick={handleRightClick}>
