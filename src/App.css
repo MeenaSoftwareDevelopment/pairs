@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+}
+
+a {
+  color: unset;
+  text-decoration: none;
+}
+
+.gradient__bg {
+  background:-moz-radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%);
+
+  /* safari 5.1+,chrome 10+ */
+  background:-webkit-radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%);
+
+  /* opera 11.10+ */
+  background:-o-radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%);
+
+  /* ie 10+ */
+  background:-ms-radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%);
+
+  /* global 92%+ browsers support */
+  background:radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%);
+}
+
+.gradient__text {
+  background: var(--gradient-text);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+
+/* this code was already included when I created the react app using vite 
+it is currently ensuring that the game board is centralized in the page. -  Dom */
+
+#root {
+  max-width: 1280000000000000px;
+  color: white;
+  margin: 0 auto;
+  padding: 27rem;
+  text-align: center;
+}
+
+
+ /*This was added to display the game board in a grid format 
+ it divides teh width of the container into 4 equal columns. 
+ then give a gap of 16 pixels between each card in both rows and columns.
+ This was done to give a more organized look to the board - Dom */
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* assuming 4x5 grid -  Dom */ 
+  gap: 16px;
+}
+
