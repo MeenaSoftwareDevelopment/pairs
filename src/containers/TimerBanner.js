@@ -3,7 +3,7 @@ import Card from "./Card";
 import { useGameLogic } from "./useGameLogic";
 import "./TimerBanner.css";
 
-const TimerBanner = () => {
+export const TimerBanner = () => {
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [userClicked, setUserClicked] = useState(false);
@@ -79,29 +79,53 @@ const TimerBanner = () => {
     return () => clearInterval(interval);
   }, [isActive]);
 
+  const buttonStyle = {
+    backgroundColor: "blue",
+    padding: "10px",
+    borderRadius: "5px",
+    textDecoration: "underline",
+    cursor: "pointer",
+  };
+
+  if (points == 10) {
+    return (
+      <div className="win-screen">
+        <h1 style={{ padding: "5px" }}>You Win</h1>
+        <p>
+          Press Reload or <kbd>F5</kbd> to play again
+        </p>
+        <p>
+          Or press <kbd>Ctrl-W</kbd> to quit
+        </p>
+      </div>
+    );
+  }
+
   return (
-    <div className="start">
+    <div className="start-button">
       <div onContextMenu={(e) => e.preventDefault()} onClick={handleRightClick}>
-        <h1>Start Game</h1>
+        <h1 style={buttonStyle} onClick={toggleTimer}>
+          Start Game
+        </h1>
+      </div>
+      <div className="timer-banner">
         <p>Time: {seconds}s</p>
+        <div className="moves">
+          <p>Moves: {moves}</p>
+        </div>
+        <div className="points">
+          <p>Points: {points}</p>
+          {cards.map((card) => (
+            <Card
+              key={card.id}
+              id={card.id}
+              color={card.color}
+              isFlipped={card.isFlipped}
+              handleCardClick={handleCardClick}
+            />
+          ))}
+        </div>
       </div>
-    <div className="timer-banner">
-      <div className="moves">
-        <p>Moves: {moves}</p>
-      </div>
-      <div className="points">
-        <p>Points: {points}</p>
-        {cards.map((card) => (
-          <Card
-            key={card.id}
-            id={card.id}
-            color={card.color}
-            isFlipped={card.isFlipped}
-            handleCardClick={handleCardClick}
-          />
-        ))}
-      </div>
-    </div>
     </div>
   );
 };
